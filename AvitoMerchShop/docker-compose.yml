@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: avito_merch
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: 
+        context: .
+        dockerfile: Dockerfile
+    container_name: avito_merch_service
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=avito_merch;Username=admin;Password=secret
+    ports:
+      - "8080:8080"
+    command: ["dotnet", "AvitoMerch.dll"]
+
+volumes:
+  postgres_data:
