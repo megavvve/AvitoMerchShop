@@ -1,6 +1,25 @@
-@AvitoMerchShop_HostAddress = http://localhost:5097
+### Получить информацию о монетах
+GET http://localhost:8080/api/coin/info?userId=1
+Authorization: Bearer YOUR_JWT_TOKEN
 
-GET {{AvitoMerchShop_HostAddress}}/weatherforecast/
-Accept: application/json
+### Передать монеты
+POST http://localhost:8080/api/coin/send
+Content-Type: application/json
+Authorization: Bearer YOUR_JWT_TOKEN
 
-###
+{
+    "FromUserId": 1,
+    "ToUserId": 2,
+    "Amount": 50
+}
+
+### Купить товар
+POST http://localhost:8080/api/purchase/buy
+Content-Type: application/json
+Authorization: Bearer YOUR_JWT_TOKEN
+
+{
+    "UserId": 1,
+    "ItemId": 1,
+    "Quantity": 1
+}
