@@ -1,17 +1,16 @@
-
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-
 WORKDIR /src
 
-
 COPY ./AvitoMerchShop/*.csproj ./AvitoMerchShop/
-RUN dotnet restore "./AvitoMerchShop/AvitoMerchShop.csproj"
+RUN dotnet restore "AvitoMerchShop/AvitoMerchShop.csproj"
 
 COPY . .
 
-RUN rm -rf ./**/bin ./**/obj
-
-RUN dotnet publish "./AvitoMerchShop/AvitoMerchShop.csproj" -c Release -o /app/publish
+RUN dotnet publish "AvitoMerchShop/AvitoMerchShop.csproj" \
+    -c Release \
+    -o /app/publish \
+    --no-restore \
+    /p:PreserveCompilationContext=true
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
