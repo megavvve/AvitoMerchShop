@@ -1,4 +1,4 @@
-﻿namespace AvitoMerchShop.Models
+﻿namespace AvitoMerchShop.Core.Entities
 {
     public class Item
     {

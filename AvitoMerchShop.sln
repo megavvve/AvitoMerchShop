@@ -8,8 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{AAE209D1-D2D9-44D7-B99F-2EF5BEEA5303}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
-		appsettings.Development.json = appsettings.Development.json
-		appsettings.json = appsettings.json
+		AvitoMerchShop.csproj.user = AvitoMerchShop.csproj.user
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
 	EndProjectSection

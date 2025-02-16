@@ -5,7 +5,10 @@ services:
       - "8080:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__PostgreSQLConnection=Host=db;Port=5432;Database=avito_merch;Username=postgres;Password=123
+      - Jwt__SecretKey=your_32_bytes_long_secret_key_for_jwt_authentication_256_bits_here
+      - Jwt__Issuer=AvitoMerchShop
+      - Jwt__Audience=AvitoUsers
+      - ConnectionStrings__PostgreSQLConnection=Host=db;Port=5432;Database=avito_merch;Username=postgres;Password=qwerty
     depends_on:
       db:
         condition: service_healthy
@@ -16,8 +19,10 @@ services:
     image: postgres:17
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
+      POSTGRES_PASSWORD: qwerty 
       POSTGRES_DB: avito_merch
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -33,3 +38,4 @@ volumes:
 
 networks:
   internal:
+    driver: bridge
